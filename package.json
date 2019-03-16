@@ -1,7 +1,7 @@
 {
   "name": "js-rules-engine",
   "description": "JavaScript rules engine for validating data object structures.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "keywords": [
     "rules engine",
     "rules",
