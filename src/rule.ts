@@ -190,7 +190,11 @@ export class Rule {
       }
     }
 
-    return true;
+    if (this.type === 'and') {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   /**

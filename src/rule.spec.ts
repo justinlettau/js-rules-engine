@@ -159,6 +159,14 @@ describe('Rule class', () => {
     });
   });
 
+  it('complex rules should evaluate correctly', () => {
+    const rule = new Rule().equals('homeWorld.name', 'Tatooine').or(sub => {
+      sub.contains('name', 'Skywalker').equals('eyeColor', 'green');
+    });
+
+    expect(rule.evaluate(person)).toEqual(true);
+  });
+
   describe('toJSON method', () => {
     it('should stringify correctly', () => {
       const rule = new Rule().equals('name', 'Luke Skywalker');
