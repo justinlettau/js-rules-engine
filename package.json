@@ -1,0 +1,63 @@
+{
+  "name": "js-rules-engine",
+  "description": "JavaScript rules engine for validating data object structures.",
+  "version": "1.0.0",
+  "keywords": [
+    "rules engine",
+    "rules",
+    "engine",
+    "javascript",
+    "json"
+  ],
+  "author": {
+    "name": "Justin Lettau",
+    "email": "me@justinlettau.com",
+    "url": "https://justinlettau.com"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/justinlettau/js-rules-engine",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/justinlettau/js-rules-engine"
+  },
+  "bugs": {
+    "url": "https://github.com/justinlettau/js-rules-engine/issues"
+  },
+  "main": "dist/index.js",
+  "types": "dist/index.d.js",
+  "files": [
+    "dist/"
+  ],
+  "scripts": {
+    "lint": "tslint -c ./tslint.json -p ./tsconfig.json",
+    "build": "tsc -p ./tsconfig.json",
+    "prepublishOnly": "npm run build",
+    "release": "standard-version",
+    "test": "nyc jasmine JASMINE_CONFIG_PATH=jasmine.json",
+    "posttest": "nyc report --reporter=json && codecov -f coverage/*.json",
+    "format:all": "prettier --write **/*.ts"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
+  },
+  "devDependencies": {
+    "@justinlettau/renovate-config": "^0.1.2",
+    "@justinlettau/tslint-config": "^0.1.0",
+    "@types/jasmine": "^3.3.10",
+    "codecov": "^3.2.0",
+    "husky": "^1.3.1",
+    "jasmine": "^3.3.1",
+    "nyc": "^13.3.0",
+    "pretty-quick": "^1.10.0",
+    "standard-version": "^5.0.1",
+    "ts-node": "^8.0.3",
+    "tslint": "^5.14.0",
+    "tslint-config-prettier": "^1.18.0",
+    "typescript": "^3.3.3333"
+  },
+  "dependencies": {
+    "ts-dot-prop": "^1.4.0"
+  }
+}
