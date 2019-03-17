@@ -1,7 +1,7 @@
 import { Condition } from './condition';
 import { defaultEngine } from './default-engine';
 import { Engine } from './engine';
-import { RuleJson, RuleType } from './interfaces';
+import { ConditionJson, RuleJson, RuleType } from './interfaces';
 
 /**
  * Rule.
@@ -202,8 +202,7 @@ export class Rule {
    */
   toJSON() {
     return {
-      items: this.items,
-      type: this.type
+      [this.type]: this.items
     };
   }
 
@@ -213,16 +212,31 @@ export class Rule {
    * @param json Json object.
    */
   private init(json?: RuleJson) {
-    if (this.type) {
-      this.type = json.type;
+    const hasOr = json.hasOwnProperty('or');
+    const hasAnd = json.hasOwnProperty('and');
+
+    if (hasOr && hasAnd) {
+      throw new Error('Rule: can only have on property ("and" / "or")');
     }
 
-    this.items = json.items.map(item => {
-      if ('items' in item) {
+    const items = json.or || json.and || [];
+
+    this.type = hasOr ? 'or' : 'and';
+    this.items = items.map(item => {
+      if (this.isRule(item)) {
         return new Rule(item, this.engine);
       } else {
         return new Condition(item, this.engine);
       }
     });
+  }
+
+  /**
+   * Identifies if a json object is a rule or a condition.
+   *
+   * @param json Object to check.
+   */
+  private isRule(json: RuleJson | ConditionJson): json is RuleJson {
+    return json.hasOwnProperty('and') || json.hasOwnProperty('or');
   }
 }

@@ -155,16 +155,14 @@ const rule = new Rule(json);
 Example JSON structure:
 ```json
 {
-  "type": "and",
-  "items": [
+  "and": [
     {
       "fact": "homeWorld.name",
       "operator": "equals",
       "value": "Tatooine"
     },
     {
-      "type": "or",
-      "items": [
+      "or": [
         {
           "fact": "name",
           "operator": "contains",

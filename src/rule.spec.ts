@@ -7,14 +7,14 @@ describe('Rule class', () => {
   describe('constructor', () => {
     it('should hydrate correctly', () => {
       const json: RuleJson = {
-        items: [
+        and: [
           {
             fact: 'name',
             operator: 'equals',
             value: 'Luke Skywalker'
           },
           {
-            items: [
+            or: [
               {
                 fact: 'height',
                 operator: 'lessThan',
@@ -25,11 +25,9 @@ describe('Rule class', () => {
                 operator: 'greaterThan',
                 value: 100
               }
-            ],
-            type: 'or'
+            ]
           }
-        ],
-        type: 'and'
+        ]
       };
       const rule = new Rule(json) as any;
       expect(rule.type).toEqual('and');
@@ -155,7 +153,7 @@ describe('Rule class', () => {
         item.equals('name', 'Han Solo').equals('eyeColor', 'green');
       });
 
-      expect(rule.evaluate(person)).toEqual(true);
+      expect(rule.evaluate(person)).toEqual(false);
     });
   });
 
@@ -172,7 +170,7 @@ describe('Rule class', () => {
       const rule = new Rule().equals('name', 'Luke Skywalker');
       const result = JSON.stringify(rule);
 
-      expect(result).toEqual('{"items":[{"fact":"name","operator":"equals","value":"Luke Skywalker"}],"type":"and"}');
+      expect(result).toEqual('{"and":[{"fact":"name","operator":"equals","value":"Luke Skywalker"}]}');
     });
   });
 });
