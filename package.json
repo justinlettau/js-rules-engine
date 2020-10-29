@@ -52,7 +52,7 @@
     "nyc": "^15.0.0",
     "pretty-quick": "^2.0.0",
     "standard-version": "^7.0.0",
-    "ts-node": "^8.0.3",
+    "ts-node": "^9.0.0",
     "tslint": "^5.14.0",
     "tslint-config-prettier": "^1.18.0",
     "typescript": "^3.3.3333"
