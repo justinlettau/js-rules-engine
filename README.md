@@ -1,5 +1,5 @@
 [![NPM Version](https://badge.fury.io/js/js-rules-engine.svg)](https://badge.fury.io/js/js-rules-engine)
-[![Build Status](https://travis-ci.org/justinlettau/js-rules-engine.svg?branch=master)](https://travis-ci.org/justinlettau/js-rules-engine)
+[![CI](https://github.com/justinlettau/js-rules-engine/workflows/CI/badge.svg)](https://github.com/justinlettau/js-rules-engine/actions)
 [![Dependency Status](https://david-dm.org/justinlettau/js-rules-engine.svg)](https://david-dm.org/justinlettau/js-rules-engine)
 [![Dev Dependency Status](https://david-dm.org/justinlettau/js-rules-engine/dev-status.svg)](https://david-dm.org/justinlettau/js-rules-engine?type=dev)
 
