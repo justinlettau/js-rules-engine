@@ -6,14 +6,16 @@ describe('Engine class', () => {
   describe('addOperator method', () => {
     it('should add operator', () => {
       const engine = new Engine();
-      const operator = new Operator('noop', (a: any, b: any) => true);
+      const operator = new Operator('noop', () => true);
       engine.addOperator(operator);
-      expect((engine as any).operators.length).toEqual(defaultOperators.length + 1);
+      expect((engine as any).operators.length).toEqual(
+        defaultOperators.length + 1
+      );
     });
 
     it('should throw error if operator already exists', () => {
       const engine = new Engine();
-      const operator = new Operator('equals', (a: any, b: any) => true);
+      const operator = new Operator('equals', () => true);
       expect(() => engine.addOperator(operator)).toThrowError();
     });
   });
@@ -22,7 +24,9 @@ describe('Engine class', () => {
     it('should remove operator', () => {
       const engine = new Engine();
       engine.removeOperator('notEquals');
-      expect((engine as any).operators.length).toEqual(defaultOperators.length - 1);
+      expect((engine as any).operators.length).toEqual(
+        defaultOperators.length - 1
+      );
     });
 
     it('should no nothing if operator does not exists', () => {

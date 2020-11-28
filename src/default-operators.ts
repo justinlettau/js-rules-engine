@@ -13,5 +13,5 @@ export const defaultOperators = [
   new Operator('lessThan', (a, b) => a < b),
   new Operator('lessThanOrEquals', (a, b) => a <= b),
   new Operator('greaterThan', (a, b) => a > b),
-  new Operator('greaterThanOrEquals', (a, b) => a >= b)
+  new Operator('greaterThanOrEquals', (a, b) => a >= b),
 ];

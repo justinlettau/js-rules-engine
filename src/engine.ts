@@ -20,7 +20,7 @@ export class Engine {
    * @param name Operator name.
    */
   getOperator(name: string) {
-    const operator = this.operators.find(item => item.name === name);
+    const operator = this.operators.find((item) => item.name === name);
 
     if (!operator) {
       throw new Error(`Engine: operator "${name}" not found`);
@@ -35,7 +35,7 @@ export class Engine {
    * @param operator Operator to add.
    */
   addOperator(operator: Operator) {
-    const exists = this.operators.some(item => item.name === operator.name);
+    const exists = this.operators.some((item) => item.name === operator.name);
 
     if (exists) {
       throw new Error(`Engine: operator "${operator.name}" already exists`);
@@ -50,7 +50,7 @@ export class Engine {
    * @param name Operator name.
    */
   removeOperator(name: string) {
-    const index = this.operators.findIndex(item => item.name === name);
+    const index = this.operators.findIndex((item) => item.name === name);
 
     if (index !== -1) {
       this.operators.splice(index, 1);

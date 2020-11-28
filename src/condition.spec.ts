@@ -7,7 +7,7 @@ describe('Condition class', () => {
     const json: ConditionJson = {
       fact: 'name',
       operator: 'equals',
-      value: 'Luke Skywalker'
+      value: 'Luke Skywalker',
     };
 
     it('should hydrate correctly', () => {
@@ -19,7 +19,9 @@ describe('Condition class', () => {
     });
 
     it('should require json param', () => {
-      expect(() => new Condition(undefined as any, defaultEngine)).toThrowError();
+      expect(
+        () => new Condition(undefined as any, defaultEngine)
+      ).toThrowError();
     });
 
     it('should require json fact property', () => {
@@ -41,10 +43,16 @@ describe('Condition class', () => {
 
   describe('toJSON method', () => {
     it('should stringify correctly', () => {
-      const json = { fact: 'name', operator: 'equals', value: 'Luke Skywalker' };
+      const json = {
+        fact: 'name',
+        operator: 'equals',
+        value: 'Luke Skywalker',
+      };
       const condition = new Condition(json, defaultEngine);
       const result = JSON.stringify(condition);
-      expect(result).toEqual('{"fact":"name","operator":"equals","value":"Luke Skywalker"}');
+      expect(result).toEqual(
+        '{"fact":"name","operator":"equals","value":"Luke Skywalker"}'
+      );
     });
   });
 });

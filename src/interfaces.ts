@@ -14,7 +14,7 @@ export type OperatorFn = (a: any, b: any) => boolean;
 export interface RuleJson extends Object {
   and?: Array<RuleJson | ConditionJson>;
   or?: Array<RuleJson | ConditionJson>;
-};
+}
 
 /**
  * Condition json configuration.

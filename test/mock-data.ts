@@ -7,10 +7,10 @@ export const person = {
     climate: 'arid',
     diameter: 10465,
     name: 'Tatooine',
-    population: 200000
+    population: 200000,
   },
   mass: 77,
   name: 'Luke Skywalker',
   skinColor: 'fair',
-  vehicles: ['Snowspeeder', 'Imperial Speeder Bike']
+  vehicles: ['Snowspeeder', 'Imperial Speeder Bike'],
 };

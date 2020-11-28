@@ -179,7 +179,7 @@ export class Rule {
    *
    * @param data Data object to use.
    */
-  evaluate(data: object) {
+  evaluate(data: Record<string, unknown>) {
     for (const item of this.items) {
       const result = item.evaluate(data);
 
@@ -202,7 +202,7 @@ export class Rule {
    */
   toJSON() {
     return {
-      [this.type]: this.items
+      [this.type]: this.items,
     };
   }
 
@@ -212,8 +212,8 @@ export class Rule {
    * @param json Json object.
    */
   private init(json?: RuleJson) {
-    const hasOr = json.hasOwnProperty('or');
-    const hasAnd = json.hasOwnProperty('and');
+    const hasOr = Object.prototype.hasOwnProperty.call(json, 'or');
+    const hasAnd = Object.prototype.hasOwnProperty.call(json, 'and');
 
     if (hasOr && hasAnd) {
       throw new Error('Rule: can only have on property ("and" / "or")');
@@ -222,7 +222,7 @@ export class Rule {
     const items = json.or || json.and || [];
 
     this.type = hasOr ? 'or' : 'and';
-    this.items = items.map(item => {
+    this.items = items.map((item) => {
       if (this.isRule(item)) {
         return new Rule(item, this.engine);
       } else {
@@ -237,6 +237,9 @@ export class Rule {
    * @param json Object to check.
    */
   private isRule(json: RuleJson | ConditionJson): json is RuleJson {
-    return json.hasOwnProperty('and') || json.hasOwnProperty('or');
+    return (
+      Object.prototype.hasOwnProperty.call(json, 'and') ||
+      Object.prototype.hasOwnProperty.call(json, 'or')
+    );
   }
 }

@@ -11,23 +11,23 @@ describe('Rule class', () => {
           {
             fact: 'name',
             operator: 'equals',
-            value: 'Luke Skywalker'
+            value: 'Luke Skywalker',
           },
           {
             or: [
               {
                 fact: 'height',
                 operator: 'lessThan',
-                value: 200
+                value: 200,
               },
               {
                 fact: 'height',
                 operator: 'greaterThan',
-                value: 100
-              }
-            ]
-          }
-        ]
+                value: 100,
+              },
+            ],
+          },
+        ],
       };
       const rule = new Rule(json) as any;
       expect(rule.type).toEqual('and');
@@ -123,7 +123,7 @@ describe('Rule class', () => {
 
   describe('and method', () => {
     it('should evaluate true when all conditions are true', () => {
-      const rule = new Rule().and(item => {
+      const rule = new Rule().and((item) => {
         item.equals('name', 'Luke Skywalker').equals('eyeColor', 'blue');
       });
 
@@ -131,7 +131,7 @@ describe('Rule class', () => {
     });
 
     it('should evaluate false when any conditions are false', () => {
-      const rule = new Rule().and(item => {
+      const rule = new Rule().and((item) => {
         item.equals('name', 'Luke Skywalker').equals('eyeColor', 'green');
       });
 
@@ -141,7 +141,7 @@ describe('Rule class', () => {
 
   describe('or method', () => {
     it('should evaluate true when any condition is true', () => {
-      const rule = new Rule().or(item => {
+      const rule = new Rule().or((item) => {
         item.equals('name', 'Luke Skywalker').equals('eyeColor', 'green');
       });
 
@@ -149,7 +149,7 @@ describe('Rule class', () => {
     });
 
     it('should evaluate false when no conditions are true', () => {
-      const rule = new Rule().or(item => {
+      const rule = new Rule().or((item) => {
         item.equals('name', 'Han Solo').equals('eyeColor', 'green');
       });
 
@@ -158,7 +158,7 @@ describe('Rule class', () => {
   });
 
   it('complex rules should evaluate correctly', () => {
-    const rule = new Rule().equals('homeWorld.name', 'Tatooine').or(sub => {
+    const rule = new Rule().equals('homeWorld.name', 'Tatooine').or((sub) => {
       sub.contains('name', 'Skywalker').equals('eyeColor', 'green');
     });
 
@@ -170,7 +170,9 @@ describe('Rule class', () => {
       const rule = new Rule().equals('name', 'Luke Skywalker');
       const result = JSON.stringify(rule);
 
-      expect(result).toEqual('{"and":[{"fact":"name","operator":"equals","value":"Luke Skywalker"}]}');
+      expect(result).toEqual(
+        '{"and":[{"fact":"name","operator":"equals","value":"Luke Skywalker"}]}'
+      );
     });
   });
 });

@@ -4,9 +4,11 @@
 [![Dev Dependency Status](https://david-dm.org/justinlettau/js-rules-engine/dev-status.svg)](https://david-dm.org/justinlettau/js-rules-engine?type=dev)
 
 # Rules Engine
+
 JavaScript rules engine for validating data object structures.
 
 # Table of Contents
+
 - [Features](#features)
 - [Installation](#installation)
 - [Usage](#usage)
@@ -19,6 +21,7 @@ JavaScript rules engine for validating data object structures.
 - [Development](#development)
 
 # Features
+
 - 💪 Easy to use **chainable API**.
 - 💥 Support for **infinitely nested** `AND` / `OR` conditions.
 - 🚀 Rules can be expressed in **simple JSON**.
@@ -26,29 +29,28 @@ JavaScript rules engine for validating data object structures.
 - 🏄 Access nested properties with **dot notation** paths.
 
 # Installation
+
 ```bash
 npm install js-rules-engine --save
 ```
 
 # Usage
+
 ```js
 import { Rule } from 'js-rules-engine';
 
 // homeWorld.name equals 'Tatooine' AND (name contains 'Skywalker' OR eyeColor is 'green')
-const rule = new Rule()
-  .equals('homeWorld.name', 'Tatooine')
-  .or(sub => {
-    sub.contains('name', 'Skywalker')
-      .equals('eyeColor', 'green');
-  });
+const rule = new Rule().equals('homeWorld.name', 'Tatooine').or((sub) => {
+  sub.contains('name', 'Skywalker').equals('eyeColor', 'green');
+});
 
 // object of data to evaluate rule against
 const fact = {
   eyeColor: 'blue',
   homeWorld: {
-    name: 'Tatooine'
+    name: 'Tatooine',
   },
-  name: 'Luke Skywalker'
+  name: 'Luke Skywalker',
 };
 
 rule.evaluate(fact);
@@ -56,6 +58,7 @@ rule.evaluate(fact);
 ```
 
 ## Default Engine
+
 An `Engine` contains all operators available to a `Rule`. By default, a single `Engine` instance is used for all `Rule` instances. The default `Engine`'s operators can be customized like this:
 
 ```js
@@ -66,6 +69,7 @@ defaultEngine.addOperator('moreGreaterThan', myAwesomeFunction);
 ```
 
 ## Override Engine
+
 Each instance of `Rule` has the ability to use it's own `Engine` instance, overriding the default.
 
 ```js
@@ -76,6 +80,7 @@ const rule = new Rule(null, engine);
 ```
 
 ## Default Operators
+
 Each `Engine` contains the follow operators by default:
 
 - `equals`
@@ -90,6 +95,7 @@ Each `Engine` contains the follow operators by default:
 - `greaterThanOrEquals`
 
 ## Customizing Operators
+
 Add your own operators to an `Engine`. Once added, any custom `Operator` can be used via the `Rule`'s `add()` method.
 
 ```js
@@ -100,6 +106,7 @@ defaultEngine.addOperator(noop);
 ```
 
 You can also remove an `Operator`.
+
 ```js
 import { defaultEngine } from 'js-rules-engine';
 
@@ -107,11 +114,12 @@ defaultEngine.removeOperator('noop');
 ```
 
 ## Rule Conditions
+
 The `add` method is a generic way to add a condition to the `Rule`. The conditions operator is added via it's `name`.
 The `value` type should match what the operator is expecting.
 
 | Param      | Description                         | Type     |
-|------------|-------------------------------------|----------|
+| ---------- | ----------------------------------- | -------- |
 | `fact`     | Property name or dot notation path. | `string` |
 | `operator` | Name of operator to use.            | `string` |
 | `value`    | Value to compare.                   | `any`    |
@@ -120,7 +128,7 @@ A `Rule` has shortcut methods for all default operators. Each method takes two a
 the `Rule` instance for chaining.
 
 | Method                | Fact Type | Value Type |
-|-----------------------|-----------|------------|
+| --------------------- | --------- | ---------- |
 | `equals`              | `string`  | `any`      |
 | `notEquals`           | `string`  | `any`      |
 | `in`                  | `string`  | `string`   |
@@ -137,6 +145,7 @@ function that is supplied with a nested `Rule` instance as the first argument, a
 for chaining.
 
 ## Persisting Rules
+
 Rules can easily be converted to JSON and persisted to a database, file system, or elsewhere.
 
 ```js
@@ -153,6 +162,7 @@ const rule = new Rule(json);
 ```
 
 Example JSON structure:
+
 ```json
 {
   "and": [
@@ -180,6 +190,7 @@ Example JSON structure:
 ```
 
 # Development
+
 ```
 npm install
 npm run build

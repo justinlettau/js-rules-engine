@@ -37,7 +37,7 @@ export class Condition {
    *
    * @param data Data object to use.
    */
-  evaluate(data: object) {
+  evaluate(data: Record<string, unknown>) {
     const factValue = get(data, this.fact);
     return this.operator.evaluate(factValue, this.value);
   }
@@ -49,7 +49,7 @@ export class Condition {
     return {
       fact: this.fact,
       operator: this.operator.name,
-      value: this.value
+      value: this.value,
     };
   }
 
