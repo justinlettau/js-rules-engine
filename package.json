@@ -43,21 +43,21 @@
   },
   "devDependencies": {
     "@justinlettau/renovate-config": "^0.1.2",
-    "@types/jest": "^26.0.15",
-    "@typescript-eslint/eslint-plugin": "^4.8.2",
-    "@typescript-eslint/parser": "^4.8.2",
-    "eslint": "^7.14.0",
-    "eslint-config-prettier": "^6.15.0",
-    "husky": "^4.3.0",
-    "jest": "^26.6.3",
-    "prettier": "^2.2.1",
-    "pretty-quick": "^3.1.0",
-    "standard-version": "^9.0.0",
-    "ts-jest": "^26.4.4",
-    "ts-node": "^9.0.0",
-    "typescript": "^4.1.2"
+    "@types/jest": "^26.0.24",
+    "@typescript-eslint/eslint-plugin": "^4.29.0",
+    "@typescript-eslint/parser": "^4.29.0",
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.3.0",
+    "husky": "^7.0.1",
+    "jest": "^27.0.6",
+    "prettier": "^2.3.2",
+    "pretty-quick": "^3.1.1",
+    "standard-version": "^9.3.1",
+    "ts-jest": "^27.0.4",
+    "ts-node": "^10.1.0",
+    "typescript": "^4.3.5"
   },
   "dependencies": {
-    "ts-dot-prop": "^1.4.2"
+    "ts-dot-prop": "^1.4.3"
   }
 }
